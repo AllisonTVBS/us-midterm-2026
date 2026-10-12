@@ -97,6 +97,17 @@
   summary{cursor:pointer;font-weight:700;color:var(--navy);font-size:17px}
   details p{margin:10px 0 0;color:#2b3345}
 
+  /* Tables / notes */
+  .tbl-wrap{overflow-x:auto;margin:0 0 20px}
+  .tbl{width:100%;min-width:560px;border-collapse:collapse;background:#fff;border:1px solid var(--line);font-size:15px}
+  .tbl caption{caption-side:top;text-align:left;font-weight:700;color:var(--navy);padding:0 0 8px}
+  .tbl th{background:var(--navy);color:#fff;text-align:left;padding:10px 12px;font-weight:700;white-space:nowrap}
+  .tbl td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top}
+  .tbl tr:nth-child(even) td{background:#f8f9fc}
+  .note{background:#fff7e6;border-left:4px solid #e0a100;padding:12px 16px;margin:0 0 20px;font-size:15px;border-radius:2px;color:#4a3b10}
+  .src{font-size:13px;color:var(--muted);margin:-8px 0 20px}
+  .src a{color:var(--blue);text-decoration:underline}
+  .card .thumb img{width:100%;height:100%;object-fit:cover;display:block}
   footer{margin-top:64px;background:var(--navy);color:#cfd6e6;padding:28px 0;font-size:13px}
   footer .copy{color:#ff6b7f}
 </style>
@@ -189,15 +200,32 @@
     <div class="fact"><b>11月3日</b><span>美國投票日（美東時間）</span></div>
     <div class="fact"><b>435席</b><span>眾議院全數改選</span></div>
     <div class="fact"><b>35席</b><span>參議院改選席次（含補選）</span></div>
-    <!-- 州長改選州數：台灣媒體多寫36州，JETRO寫39州，上線前請編輯台核對後填入 -->
-    <div class="fact"><b>【待核對】</b><span>州長改選州數</span></div>
+    <div class="fact"><b>36州</b><span>同步改選州長</span></div>
   </div>
-  <div class="slot"><b>【圖卡模組】期中選舉總覽圖</b>席次、日期、開票時程一張圖</div>
+  <div class="tbl-wrap"><table class="tbl">
+    <caption>開票時程對照（台灣時間11月4日起，約略值）</caption>
+    <thead><tr><th>台灣時間</th><th>美東時間</th><th>進度</th><th>這時看什麼</th></tr></thead>
+    <tbody>
+      <tr><td>11月4日上午7至8點</td><td>11月3日晚間6至7點</td><td>東岸最早一批州關閉投票所</td><td>喬治亞參議院選情，是最早能觀察走向的關鍵州之一</td></tr>
+      <tr><td>上午8點半至9點</td><td>晚間7點半至8點</td><td>第二批州關閉，進入高峰</td><td>俄亥俄參議院補選、北卡羅來納與密西根參議院選情、賓州眾議院選區</td></tr>
+      <tr><td>上午10至11點</td><td>晚間9至10點</td><td>中部與山區州陸續關閉</td><td>明尼蘇達、愛荷華參議院選情，以及中西部眾議院選區</td></tr>
+      <tr><td>中午前後</td><td>晚間11點</td><td>西岸州關閉</td><td>加州多個勝負接近的眾議院選區；郵寄選票多，計票偏慢</td></tr>
+      <tr><td>下午1至2點</td><td>午夜至凌晨1點</td><td>阿拉斯加、夏威夷關閉</td><td>阿拉斯加參議院選情，是最後出的關鍵戰場之一</td></tr>
+    </tbody></table></div>
+  <p class="src">美國夏令時間已於11月1日結束，11月3日的美東時間與台灣相差13小時。同一州內若跨時區，關閉投票所時間不同，上表為依各州公告換算的約略值。資料整理自<a href="https://news.tvbs.com.tw/world/4032883" target="_blank" rel="noopener">TVBS新聞網期中選舉懶人包</a>。</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <caption>2026美國期中選舉重要日程</caption>
+    <thead><tr><th>時程</th><th>日期</th><th>說明</th></tr></thead>
+    <tbody>
+      <tr><td>初選期間</td><td>3月3日至9月15日</td><td>各黨提名人於此期間確定；部分州因重劃選區另辦特別初選，路易斯安那州眾議院改在11月3日舉行開放式初選</td></tr>
+      <tr><td>投票日</td><td>11月3日（週二）</td><td>選出眾議院435席、參議院35席、36州州長與各地職位，台灣時間11月4日陸續開票</td></tr>
+      <tr><td>新國會就任</td><td>2027年1月3日</td><td>第120屆美國國會正式宣誓就職；11月4日至1月3日之間為計票、認證與交接期</td></tr>
+    </tbody></table></div>
   <div class="cards">
     <!-- 文章卡片，等待補入 -->
-    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】期中選舉懶人包</h3><p>記者姓名｜日期</p></div></a>
-    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】</h3><p>記者姓名｜日期</p></div></a>
-    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】</h3><p>記者姓名｜日期</p></div></a>
+    <a class="card" href="https://news.tvbs.com.tw/world/4032883" target="_blank" rel="noopener"><div class="thumb"><img src="https://news-images.tvbs.com.tw/api/v1/image/01a1154d-b9cc-7388-b0aa-b80d198398cc.jpg?w=800&h=450&t=16x9" alt="" loading="lazy" onerror="this.remove()"></div><div class="body"><h3>2026美國期中選舉懶人包》投票開票時間、改選職位席次與過半規則整理</h3></div></a>
+    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】</h3></div></a>
+    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】</h3></div></a>
   </div>
 </section>
 
@@ -206,11 +234,19 @@
   <div class="part">PART 2</div>
   <h2>川普期中大考：低支持率與歷史魔咒，共和黨守得住國會嗎？</h2>
   <p class="intro">期中選舉向來被視為對現任總統的信任投票，歷史上執政黨在期中選舉通常會失去國會席次。2026年的特殊之處在於，川普支持率偏低，加上物價、關稅與國際局勢等爭議，共和黨面臨的選情壓力備受關注。這個區塊整理川普支持率走勢、兩黨目前的國會席次，以及歷屆期中選舉的規律。</p>
-  <div class="slot"><b>【圖表模組】川普支持率走勢／兩黨國會席次對照</b>數據待補，請標註來源與更新日期</div>
+  <div class="tbl-wrap"><table class="tbl">
+    <caption>國會過半門檻與現況</caption>
+    <thead><tr><th>職位</th><th>總席次</th><th>過半門檻</th><th>現況</th><th>民主黨需淨增</th></tr></thead>
+    <tbody>
+      <tr><td>眾議院</td><td>435席</td><td>218席</td><td>共和黨218席、民主黨214席（另有1席無黨籍、2席空缺）</td><td>約4席</td></tr>
+      <tr><td>參議院</td><td>100席</td><td>51席（50對50時由副總統決定票）</td><td>共和黨53席、民主黨陣營47席（含2席無黨籍）</td><td>4席</td></tr>
+    </tbody></table></div>
+  <p class="src">副總統同時是參議院議長，雙方票數相同時可投下決定票，現任副總統范斯屬共和黨，因此共和黨最多可失去3席仍維持多數。眾議院為第119屆國會現況，合計435席，空缺席次補選後民主黨所需淨增席次會略有變動。不同來源的席次略有出入，請以美國眾議院與參議院官方網站為準。資料整理自<a href="https://news.tvbs.com.tw/world/4032883" target="_blank" rel="noopener">TVBS新聞網期中選舉懶人包</a>。</p>
+  <div class="slot"><b>【圖表模組】川普支持率走勢</b>數據待補，請標註來源與更新日期</div>
   <div class="cards">
-    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】</h3><p>記者姓名｜日期</p></div></a>
-    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】</h3><p>記者姓名｜日期</p></div></a>
-    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】</h3><p>記者姓名｜日期</p></div></a>
+    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】</h3></div></a>
+    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】</h3></div></a>
+    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】</h3></div></a>
   </div>
 </section>
 
@@ -219,11 +255,12 @@
   <div class="part">PART 3</div>
   <h2>權力版圖在這裡決定：參眾兩院關鍵戰場全地圖</h2>
   <p class="intro">參議院與眾議院的選戰地圖大不相同，勝負往往取決於少數幾個關鍵州與搖擺選區。參議院方面，喬治亞、密西根、明尼蘇達、愛荷華與北卡羅來納被視為攸關多數黨歸屬的戰場。這裡帶你看清楚各地的選情與候選人，開票夜就知道該盯哪幾個州。</p>
+  <div class="note"><b>選區重劃是這次的變數。</b>依PolicyMap 9月28日的追蹤整理，11月將使用新地圖的有9個州：德州、加州、北卡羅來納、俄亥俄、猶他、佛羅里達、田納西、路易斯安那與阿拉巴馬。維吉尼亞與密蘇里的新地圖最後都沒能上路，11月仍沿用舊圖。多數新地圖仍有訴訟進行，實際結果要等開票後才知道。</div>
   <div class="slot"><b>【地圖模組】關鍵戰場互動地圖</b>參議院關鍵州、眾院搖擺選區、州長選舉</div>
   <div class="cards">
-    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】參議院戰場</h3><p>記者姓名｜日期</p></div></a>
-    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】眾議院搖擺選區</h3><p>記者姓名｜日期</p></div></a>
-    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】州長選舉</h3><p>記者姓名｜日期</p></div></a>
+    <a class="card" href="https://news.tvbs.com.tw/world/4034970" target="_blank" rel="noopener"><div class="thumb"><img src="https://news-images.tvbs.com.tw/api/v1/image/01a12ed3-09db-7103-b340-2508bc316470.jpg?w=800&h=450&t=16x9" alt="" loading="lazy" onerror="this.remove()"></div><div class="body"><h3>美國參議院眾議院差在哪？席次任期、權力分工與2026期中選舉影響一次看懂</h3></div></a>
+    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】眾議院搖擺選區</h3></div></a>
+    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】州長選舉</h3></div></a>
   </div>
 </section>
 
@@ -233,10 +270,10 @@
   <h2>荷包決定選票：物價、關稅、移民與油價四大戰線</h2>
   <p class="intro">選民最終怎麼投，常常取決於荷包與生活感受。2026年的選戰中，物價與關稅政策、移民議題，以及國際局勢帶動的油價波動，都是兩黨攻防的焦點。這個區塊整理各項議題的來龍去脈與兩黨主張，看懂選民真正在乎什麼。</p>
   <div class="cards">
-    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】物價與關稅</h3><p>記者姓名｜日期</p></div></a>
-    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】移民政策</h3><p>記者姓名｜日期</p></div></a>
-    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】油價與國際局勢</h3><p>記者姓名｜日期</p></div></a>
-    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】</h3><p>記者姓名｜日期</p></div></a>
+    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】物價與關稅</h3></div></a>
+    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】移民政策</h3></div></a>
+    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】油價與國際局勢</h3></div></a>
+    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】</h3></div></a>
   </div>
 </section>
 
@@ -247,9 +284,9 @@
   <p class="intro">美國期中選舉的結果，會影響國會對關稅、晶片與對台政策的態度，也牽動台股與全球市場的情緒。無論共和黨守住多數，或民主黨重掌其中一院，國會與白宮的互動都可能改變。這裡邀請專家拆解選舉結果對台灣外交、經貿與投資人的可能影響。</p>
   <div class="slot"><b>【影音模組】專家觀點／駐美記者連線</b>影片待補</div>
   <div class="cards">
-    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】對台關稅與晶片</h3><p>記者姓名｜日期</p></div></a>
-    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】對台軍售與外交</h3><p>記者姓名｜日期</p></div></a>
-    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】台股與美股</h3><p>記者姓名｜日期</p></div></a>
+    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】對台關稅與晶片</h3></div></a>
+    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】對台軍售與外交</h3></div></a>
+    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】台股與美股</h3></div></a>
   </div>
 </section>
 
@@ -258,13 +295,14 @@
   <div class="part">PART 6</div>
   <h2>開票夜Live：2026美國期中選舉即時戰況與國會控制權</h2>
   <p class="intro">美國期中選舉將於台灣時間11月4日起陸續開票，各州投票截止時間不同，部分關鍵選區可能需要較長時間才能確定結果。TVBS新聞網將在這個區塊即時更新各州開票進度、當選名單與國會控制權消息，並搭配影音直播與快訊，選舉日當天請隨時回到這一頁。</p>
+  <div class="note"><b>開票夜不一定有最終結果。</b>郵寄選票的收件與計票、結果接近時的覆核與重新計票，都可能讓勝負拖延；以2022年為例，共和黨直到投票日後8天才湊齊眾議院過半所需的218席。2026年路易斯安那州眾議院選舉採開放式初選，若無人過半，將於12月12日決選，該州席次可能延到12月才定案。媒體宣布勝負只是預測，法律上的結果以各州認證為準。</div>
   <div class="live-box">
     <span class="live-badge">11/4 啟用</span>
     <div class="slot" style="margin:0 0 14px"><b>【即時結果嵌入模組】</b>眾議院／參議院／州長即時開票</div>
     <div class="slot" style="margin:0 0 14px"><b>【影音直播模組】</b>開票夜直播</div>
     <div class="cards">
-      <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【快訊文章待補】</h3><p>記者姓名｜時間</p></div></a>
-      <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【快訊文章待補】</h3><p>記者姓名｜時間</p></div></a>
+      <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【快訊文章待補】</h3></div></a>
+      <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【快訊文章待補】</h3></div></a>
     </div>
   </div>
 </section>
@@ -282,27 +320,28 @@
   <div class="part">PART 8</div>
   <h2>期中選舉Q&amp;A：五個最常被問的問題</h2>
   <p class="intro">關於美國期中選舉，許多讀者最常問的是選舉日期、改選範圍、與總統大選有何不同，以及結果對台灣的影響。以下彙整五個最常被搜尋的問題，並提供簡短明確的答案。</p>
-  <!-- FAQ答案為初稿，請編輯台核對後再上線 -->
+  <!-- FAQ答案依TVBS新聞網期中選舉懶人包整理，上線前請編輯台核對 -->
   <details open>
     <summary>2026美國期中選舉是哪一天？台灣時間幾點開票？</summary>
-    <p>2026年美國期中選舉投票日為11月3日（美東時間），台灣時間11月4日起陸續開票。各州投票截止時間不同，部分關鍵選區可能需要較長時間才能確定結果。</p>
+    <p>2026年美國期中選舉投票日為11月3日（美東時間），台灣時間11月4日上午起陸續出現結果。美東與台灣相差13小時，各州關閉投票所的時間不同，關鍵席次可能因郵寄選票與計票規定拖到數日後才確定。</p>
   </details>
   <details>
     <summary>期中選舉要選哪些職位？</summary>
-    <p>眾議院435席全數改選，參議院改選35席（含補選），另有多個州同步選出州長。</p>
+    <p>眾議院435席全數改選，參議院改選35席（33席例行改選，加上佛羅里達與俄亥俄2場補選），另有36州同步選出州長，同一天還有州議會、檢察總長、法官、市長與各州公投案。</p>
   </details>
   <details>
     <summary>期中選舉和總統大選有什麼不同？</summary>
-    <p>期中選舉在總統任期過半時舉行，不選總統，而是決定國會兩院的多數黨歸屬，被視為對現任總統與執政黨的期中考。</p>
+    <p>期中選舉在總統任期過半時舉行，不選總統，選的是國會議員與地方職位。眾議員任期2年、全數改選，參議員任期6年、每次只改選約三分之一，結果決定總統後半任期的政策空間，常被視為對執政黨的期中考。</p>
   </details>
   <details>
-    <summary>國會控制權為什麼重要？</summary>
-    <p>國會掌握立法、預算與重要人事同意權。若總統所屬政黨失去其中一院，法案推動與政府人事任命都可能面臨更大阻力。</p>
+    <summary>國會要贏幾席才算過半？50對50怎麼算？</summary>
+    <p>眾議院435席須取得218席才算過半，參議院100席須取得51席。參議院若50對50，由副總統投下決定票，現任副總統范斯屬共和黨，因此民主黨要奪回參議院，須在現有席次基礎上淨增4席。</p>
   </details>
   <details>
     <summary>期中選舉結果對台灣有什麼影響？</summary>
     <p>國會對關稅、晶片、對台軍售與對中政策的態度，都會影響台美經貿與安全關係，也可能牽動台股與全球市場情緒。詳見本專題「台灣變數」區塊。</p>
   </details>
+  <p class="src" style="margin-top:14px">更多規則說明請見<a href="https://news.tvbs.com.tw/world/4032883" target="_blank" rel="noopener">TVBS新聞網期中選舉懶人包</a>與<a href="https://news.tvbs.com.tw/world/4034970" target="_blank" rel="noopener">美國參議院眾議院差在哪</a>。</p>
 </section>
 
 <!-- Part9 延伸閱讀 -->
@@ -311,9 +350,9 @@
   <h2>延伸閱讀：川普時代的美國政局</h2>
   <p class="intro">想進一步了解川普第二任期的施政脈絡與美國政局，可以接著看以下專題與深度報導。</p>
   <div class="cards">
-    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【專題待補】2026川習會直擊</h3><p>TVBS新聞網策展</p></div></a>
-    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【專題待補】川普相關專題</h3><p>TVBS新聞網策展</p></div></a>
-    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】</h3><p>記者姓名｜日期</p></div></a>
+    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【專題待補】2026川習會直擊</h3></div></a>
+    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【專題待補】川普相關專題</h3></div></a>
+    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】</h3></div></a>
   </div>
 </section>
 
@@ -322,7 +361,7 @@
 <footer>
   <div class="wrap">
     <p class="copy">本專題內容版權屬TVBS新聞網所有，未經授權不得轉載。</p>
-    <p>本頁為策展頁初稿（含主視覺），文章連結、圖表與影音待補。</p>
+    <p>本頁為策展頁初稿，其餘文章連結、圖表與影音待補。</p>
   </div>
 </footer>
 
