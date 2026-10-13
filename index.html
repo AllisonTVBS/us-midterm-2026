@@ -2,6 +2,7 @@
 <html lang="zh-Hant-TW">
 <head>
 <meta charset="UTF-8">
+<base target="_top">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>2026美國期中選舉｜川普期中大考全紀錄</title>
 <meta name="description" content="2026美國期中選舉11月3日投票，國會多數黨誰屬、川普後半任期怎麼走、台灣關稅晶片與台股受何影響？TVBS新聞網深度策展，開票夜即時追蹤戰況。">
@@ -108,6 +109,54 @@
   .src{font-size:13px;color:var(--muted);margin:-8px 0 20px}
   .src a{color:var(--blue);text-decoration:underline}
   .card .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  /* Part1 總覽（響應式） */
+  .ov-h{font-size:22px;color:var(--navy);margin:30px 0 14px;line-height:1.4}
+  .ov-bars{background:#fff;border:1px solid var(--line);border-radius:6px;padding:20px 22px}
+  .ov-row{margin-bottom:22px}.ov-row:last-child{margin-bottom:0}
+  .ov-bh{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;font-size:19px;font-weight:800;margin-bottom:8px}
+  .ov-bh span{font-size:14px;font-weight:500;color:var(--muted)}
+  .ov-barwrap{position:relative}
+  .ov-bar{position:relative;display:flex;height:44px;border-radius:4px;overflow:hidden}
+  .ov-bar div{display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:17px;white-space:nowrap;overflow:hidden}
+  .ov-bar .R{background:#c8102e}.ov-bar .D{background:#1a3d8f}.ov-bar .I{background:#6f7ea8}
+  .ov-bar .V{background:repeating-linear-gradient(45deg,#bfc5d3,#bfc5d3 5px,#e5e8ef 5px,#e5e8ef 10px)}
+  .ov-mark{position:absolute;top:0;bottom:0;width:3px;margin-left:-1.5px;background:#111}
+  .ov-leg{font-size:14px;color:var(--muted);margin-top:8px;line-height:1.6}
+  .ov-tl{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);gap:10px;position:relative;background:#fff;border:1px solid var(--line);border-radius:6px;padding:24px 16px 18px}
+  .ov-tl::before{content:"";position:absolute;left:10%;right:10%;top:41px;height:4px;background:linear-gradient(90deg,var(--blue),var(--red))}
+  .ov-tl li{position:relative;text-align:center}
+  .ov-dot{position:relative;z-index:1;display:block;width:34px;height:34px;border-radius:50%;margin:0 auto 12px;background:#fff;border:5px solid var(--blue);box-shadow:0 0 0 4px #fff}
+  .ov-tl li:nth-child(3) .ov-dot{border-color:#6a3a7c}.ov-tl li:nth-child(4) .ov-dot{border-color:#a8143a}.ov-tl li:nth-child(5) .ov-dot{border-color:var(--red)}
+  .ov-tl .tw{font-size:17px;font-weight:800;color:var(--navy);line-height:1.35}
+  .ov-tl .us{font-size:13px;color:var(--muted);margin:2px 0 6px}
+  .ov-tl .w{font-size:15px;font-weight:700}
+  .ov-tl .k{font-size:14px;line-height:1.55;margin-top:6px;background:#f3f6fb;border-radius:4px;padding:6px 8px}
+  .ov-dates{display:grid;grid-template-columns:repeat(3,1fr);margin-bottom:6px}
+  .ov-dt{background:#fff;border:1px solid var(--line);padding:16px 18px;position:relative}
+  .ov-dt:not(:last-child)::after{content:"";position:absolute;right:-13px;top:50%;margin-top:-13px;border-left:13px solid var(--blue);border-top:13px solid transparent;border-bottom:13px solid transparent;z-index:2}
+  .ov-dt.hi{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .ov-dt.hi:not(:last-child)::after{border-left-color:var(--navy)}
+  .ov-dt .a{font-size:14px;opacity:.8}.ov-dt .b{font-size:24px;font-weight:900;margin:2px 0}.ov-dt .c{font-size:14px;line-height:1.55;opacity:.9}
+  @media (max-width:760px){
+    .ov-tl{grid-template-columns:1fr;gap:16px;padding:18px 16px 18px 56px}
+    .ov-tl::before{left:33px;right:auto;top:34px;bottom:34px;width:4px;height:auto;background:linear-gradient(180deg,var(--blue),var(--red))}
+    .ov-tl li{text-align:left}
+    .ov-dot{position:absolute;left:-39px;top:0;margin:0;width:28px;height:28px;border-width:4px}
+    .ov-dates{grid-template-columns:1fr}
+    .ov-dt:not(:last-child)::after{right:auto;left:50%;top:auto;bottom:-13px;margin:0 0 0 -13px;border-left:13px solid transparent;border-right:13px solid transparent;border-top:13px solid var(--blue);border-bottom:0}
+    .ov-dt.hi:not(:last-child)::after{border-top-color:var(--navy);border-left-color:transparent}
+    .ov-bar div{font-size:14px}
+  }
+  /* Part1 單篇主打卡 */
+  .feature{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);background:var(--card);border:1px solid var(--line);border-left:6px solid var(--red);border-radius:6px;overflow:hidden;margin-top:6px}
+  .feature .thumb{aspect-ratio:16/9;background:repeating-linear-gradient(45deg,#e9edf5,#e9edf5 10px,#f2f5fa 10px,#f2f5fa 20px)}
+  .feature .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .feature .fbody{padding:22px 26px;display:flex;flex-direction:column;justify-content:center;gap:12px}
+  .feature .ftag{align-self:flex-start;background:var(--red);color:#fff;font-size:13px;font-weight:700;letter-spacing:.08em;padding:2px 10px;border-radius:2px}
+  .feature h3{font-size:22px;line-height:1.5;color:var(--navy)}
+  .feature .fcta{color:var(--blue);font-weight:700;font-size:15px}
+  .feature:hover .fcta{text-decoration:underline}
+  @media (max-width:760px){.feature{grid-template-columns:1fr;border-left-width:1px;border-top:6px solid var(--red)}.feature .fbody{padding:16px 18px 20px}.feature h3{font-size:19px}}
   footer{margin-top:64px;background:var(--navy);color:#cfd6e6;padding:28px 0;font-size:13px}
   footer .copy{color:#ff6b7f}
 </style>
@@ -178,14 +227,14 @@
 
 <nav>
   <div class="wrap">
-    <a href="#part1">懶人包</a>
-    <a href="#part2">川普期中考</a>
-    <a href="#part3">關鍵戰場</a>
-    <a href="#part4">選民議題</a>
-    <a href="#part5">台灣怎麼看</a>
-    <a href="#part6" class="live">開票夜Live</a>
-    <a href="#part7">選後解析</a>
-    <a href="#part8">常見問題</a>
+    <a href="#part1" target="_self">懶人包</a>
+    <a href="#part2" target="_self">川普期中考</a>
+    <a href="#part3" target="_self">關鍵戰場</a>
+    <a href="#part4" target="_self">選民議題</a>
+    <a href="#part5" target="_self">台灣怎麼看</a>
+    <a href="#part6" target="_self" class="live">開票夜Live</a>
+    <a href="#part7" target="_self">選後解析</a>
+    <a href="#part8" target="_self">常見問題</a>
   </div>
 </nav>
 
@@ -202,31 +251,52 @@
     <div class="fact"><b>35席</b><span>參議院改選席次（含補選）</span></div>
     <div class="fact"><b>36州</b><span>同步改選州長</span></div>
   </div>
-  <div class="tbl-wrap"><table class="tbl">
-    <caption>開票時程對照（台灣時間11月4日起，約略值）</caption>
-    <thead><tr><th>台灣時間</th><th>美東時間</th><th>進度</th><th>這時看什麼</th></tr></thead>
-    <tbody>
-      <tr><td>11月4日上午7至8點</td><td>11月3日晚間6至7點</td><td>東岸最早一批州關閉投票所</td><td>喬治亞參議院選情，是最早能觀察走向的關鍵州之一</td></tr>
-      <tr><td>上午8點半至9點</td><td>晚間7點半至8點</td><td>第二批州關閉，進入高峰</td><td>俄亥俄參議院補選、北卡羅來納與密西根參議院選情、賓州眾議院選區</td></tr>
-      <tr><td>上午10至11點</td><td>晚間9至10點</td><td>中部與山區州陸續關閉</td><td>明尼蘇達、愛荷華參議院選情，以及中西部眾議院選區</td></tr>
-      <tr><td>中午前後</td><td>晚間11點</td><td>西岸州關閉</td><td>加州多個勝負接近的眾議院選區；郵寄選票多，計票偏慢</td></tr>
-      <tr><td>下午1至2點</td><td>午夜至凌晨1點</td><td>阿拉斯加、夏威夷關閉</td><td>阿拉斯加參議院選情，是最後出的關鍵戰場之一</td></tr>
-    </tbody></table></div>
-  <p class="src">美國夏令時間已於11月1日結束，11月3日的美東時間與台灣相差13小時。同一州內若跨時區，關閉投票所時間不同，上表為依各州公告換算的約略值。資料整理自<a href="https://news.tvbs.com.tw/world/4032883" target="_blank" rel="noopener">TVBS新聞網期中選舉懶人包</a>。</p>
-  <div class="tbl-wrap"><table class="tbl">
-    <caption>2026美國期中選舉重要日程</caption>
-    <thead><tr><th>時程</th><th>日期</th><th>說明</th></tr></thead>
-    <tbody>
-      <tr><td>初選期間</td><td>3月3日至9月15日</td><td>各黨提名人於此期間確定；部分州因重劃選區另辦特別初選，路易斯安那州眾議院改在11月3日舉行開放式初選</td></tr>
-      <tr><td>投票日</td><td>11月3日（週二）</td><td>選出眾議院435席、參議院35席、36州州長與各地職位，台灣時間11月4日陸續開票</td></tr>
-      <tr><td>新國會就任</td><td>2027年1月3日</td><td>第120屆美國國會正式宣誓就職；11月4日至1月3日之間為計票、認證與交接期</td></tr>
-    </tbody></table></div>
-  <div class="cards">
-    <!-- 文章卡片，等待補入 -->
-    <a class="card" href="https://news.tvbs.com.tw/world/4032883" target="_blank" rel="noopener"><div class="thumb"><img src="https://news-images.tvbs.com.tw/api/v1/image/01a1154d-b9cc-7388-b0aa-b80d198398cc.jpg?w=800&h=450&t=16x9" alt="" loading="lazy" onerror="this.remove()"></div><div class="body"><h3>2026美國期中選舉懶人包》投票開票時間、改選職位席次與過半規則整理</h3></div></a>
-    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】</h3></div></a>
-    <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【文章標題待補】</h3></div></a>
+  <h3 class="ov-h">兩黨目前席次與過半門檻</h3>
+  <div class="ov-bars">
+    <div class="ov-row">
+      <div class="ov-bh">眾議院 435席<span>黑線為過半門檻218席</span></div>
+      <div class="ov-barwrap"><div class="ov-bar">
+        <div class="R" style="width:50.1%">共和黨 218</div>
+        <div class="V" style="width:.46%"></div>
+        <div class="I" style="width:.23%"></div>
+        <div class="D" style="width:49.2%">民主黨 214</div>
+        <span class="ov-mark" style="left:50.1%"></span>
+      </div></div>
+      <p class="ov-leg">另有1席無黨籍、2席空缺。共和黨剛好站在218席門檻上，民主黨要奪回多數，需淨增約4席。</p>
+    </div>
+    <div class="ov-row">
+      <div class="ov-bh">參議院 100席<span>黑線為過半門檻51席</span></div>
+      <div class="ov-barwrap"><div class="ov-bar">
+        <div class="R" style="width:53%">共和黨 53</div>
+        <div class="I" style="width:2%"></div>
+        <div class="D" style="width:45%">民主黨 45</div>
+        <span class="ov-mark" style="left:51%"></span>
+      </div></div>
+      <p class="ov-leg">民主黨陣營47席（含2席無黨籍）。50對50時由副總統決定票，現任副總統范斯屬共和黨，民主黨須淨增4席。</p>
+    </div>
   </div>
+
+  <h3 class="ov-h">台灣時間開票時程</h3>
+  <ol class="ov-tl">
+    <li><span class="ov-dot"></span><div class="tw">11月4日上午7至8點</div><div class="us">美東11月3日晚間6至7點</div><div class="w">東岸最早一批州</div><div class="k">喬治亞參議院選情，是最早能觀察走向的關鍵州之一</div></li>
+    <li><span class="ov-dot"></span><div class="tw">上午8點半至9點</div><div class="us">美東晚間7點半至8點</div><div class="w">第二批州，進入高峰</div><div class="k">俄亥俄參議院補選、北卡羅來納與密西根參議院選情、賓州眾議院選區</div></li>
+    <li><span class="ov-dot"></span><div class="tw">上午10至11點</div><div class="us">美東晚間9至10點</div><div class="w">中部與山區州</div><div class="k">明尼蘇達、愛荷華參議院選情，以及中西部眾議院選區</div></li>
+    <li><span class="ov-dot"></span><div class="tw">中午前後</div><div class="us">美東晚間11點</div><div class="w">西岸州關閉</div><div class="k">加州多個勝負接近的眾議院選區；郵寄選票多，計票偏慢</div></li>
+    <li><span class="ov-dot"></span><div class="tw">下午1至2點</div><div class="us">美東午夜至凌晨1點</div><div class="w">阿拉斯加、夏威夷</div><div class="k">阿拉斯加參議院選情，是最後出的關鍵戰場之一</div></li>
+  </ol>
+  <p class="src">美東與台灣相差13小時（美國夏令時間已於11月1日結束）。時間為依各州公告換算的約略值，郵寄選票與覆核可能讓關鍵席次拖到數日後才確定，法律上的結果以各州認證為準。</p>
+
+  <h3 class="ov-h">重要日程</h3>
+  <div class="ov-dates">
+    <div class="ov-dt"><div class="a">3月3日至9月15日</div><div class="b">初選期間</div><div class="c">各黨提名人確定，路易斯安那州眾議院改在11月3日舉行開放式初選</div></div>
+    <div class="ov-dt hi"><div class="a">11月3日（週二）</div><div class="b">投票日</div><div class="c">選出眾議院435席、參議院35席、36州州長，台灣時間11月4日陸續開票</div></div>
+    <div class="ov-dt"><div class="a">2027年1月3日</div><div class="b">新國會就任</div><div class="c">第120屆國會宣誓就職，11月4日至1月3日為計票、認證與交接期</div></div>
+  </div>
+  <p class="src">資料整理自<a href="https://news.tvbs.com.tw/world/4032883" target="_blank" rel="noopener">TVBS新聞網期中選舉懶人包</a>與第119屆國會席次，更新至2026年10月13日，席次以官方公布為準。</p>
+  <a class="feature" href="https://news.tvbs.com.tw/world/4032883" target="_blank" rel="noopener">
+    <div class="thumb"><img src="https://news-images.tvbs.com.tw/api/v1/image/01a1154d-b9cc-7388-b0aa-b80d198398cc.jpg?w=800&h=450&t=16x9" alt="" loading="lazy" onerror="this.remove()"></div>
+    <div class="fbody"><span class="ftag">完整版懶人包</span><h3>2026美國期中選舉懶人包》投票開票時間、改選職位席次與過半規則整理</h3><span class="fcta">閱讀完整懶人包 →</span></div>
+  </a>
 </section>
 
 <!-- Part2 -->
@@ -316,8 +386,8 @@
     <div class="slot" style="margin:0 0 14px"><b>【即時結果嵌入模組】</b>眾議院／參議院／州長即時開票</div>
     <div class="slot" style="margin:0 0 14px"><b>【影音直播模組】</b>開票夜直播</div>
     <div class="cards">
-      <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【快訊文章待補】</h3></div></a>
-      <a class="card" href="#"><div class="thumb">圖片待補</div><div class="body"><h3>【快訊文章待補】</h3></div></a>
+      <a class="card" href="#" target="_self"><div class="thumb">圖片待補</div><div class="body"><h3>【快訊文章待補】</h3></div></a>
+      <a class="card" href="#" target="_self"><div class="thumb">圖片待補</div><div class="body"><h3>【快訊文章待補】</h3></div></a>
     </div>
   </div>
 </section>
