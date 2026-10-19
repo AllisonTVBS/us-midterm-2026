@@ -235,7 +235,7 @@
     <a href="#part3" target="_self">關鍵戰場</a>
     <a href="#part4" target="_self">選民議題</a>
     <a href="#part5" target="_self">台灣怎麼看</a>
-    <a href="#part8" target="_self">常見問題</a>
+    <a href="#part6" target="_self">常見問題</a>
   </div>
 </nav>
 
@@ -316,10 +316,10 @@
 <div class="ap" id="ap">
   <div class="ap-head"><b>川普就任以來施政支持率走勢</b><span>全國民調加權平均，按月</span></div>
   <div class="ap-chartwrap">
-    <svg id="apSvg" viewBox="0 0 720 340" role="img" aria-label="川普第二任期支持率與不支持率按月走勢，支持率由2025年1月的51.0%降至2026年10月的35.0%"></svg>
+    <svg id="apSvg" viewBox="0 0 720 340" role="img" aria-label="川普第二任期支持率與不支持率按月走勢，支持率由2025年1月的51.0%降至2026年10月的34.4%"></svg>
     <div class="ap-tip" id="apTip" hidden></div>
   </div>
-  <p class="ap-src">資料來源：<a href="https://trumpinsight.com/trump-approval-rating" target="_blank" rel="noopener">Trump Insight</a>（採用<a href="https://votehub.com/" target="_blank" rel="noopener">VoteHub</a>全國民調資料，CC BY 4.0），資料更新至2026年10月18日。各月數字為每日加權平均的月均值；空心圓點代表該月納入的民調少於5份，參考性較低（2026年10月僅2份）。不同媒體的平均算法不同，數字會有落差，例如2026年9月12日各平均值的支持率介於34.8%至40.0%。</p>
+  <p class="ap-src">資料來源：<a href="https://trumpinsight.com/trump-approval-rating" target="_blank" rel="noopener">Trump Insight</a>（採用<a href="https://votehub.com/" target="_blank" rel="noopener">VoteHub</a>全國民調資料，CC BY 4.0），資料擷取於2026年10月19日。各月數字為每日加權平均的月均值；空心圓點代表該月納入的民調少於5份，參考性較低（2026年7月僅2份）。不同媒體的平均算法不同，數字會有落差，例如2026年9月12日各平均值的支持率介於34.8%至40.0%。</p>
 </div>
 <style>
 .ap{background:#fff;border:1px solid var(--line);border-radius:8px;padding:18px;margin-bottom:20px}
@@ -336,7 +336,7 @@
 </style>
 <script>
 (function(){
-var M=[['2025/01',51.0,41.7,18],['2025/02',49.2,45.9,45],['2025/03',47.6,48.8,51],['2025/04',45.3,50.9,54],['2025/05',45.0,51.3,35],['2025/06',44.8,52.1,48],['2025/07',44.6,52.3,45],['2025/08',43.7,52.6,37],['2025/09',43.8,52.9,43],['2025/10',43.4,52.8,51],['2025/11',41.7,54.8,44],['2025/12',42.5,54.1,43],['2026/01',41.9,54.5,54],['2026/02',41.2,55.7,47],['2026/03',41.0,55.3,49],['2026/04',39.4,57.6,52],['2026/05',38.8,57.9,42],['2026/06',39.2,57.6,40],['2026/07',41.2,56.3,0],['2026/08',40.7,56.2,5],['2026/09',36.9,56.9,0],['2026/10',35.0,62.4,2]];
+var M=[['2025/01',51.0,41.7,18],['2025/02',49.2,45.9,45],['2025/03',47.6,48.8,51],['2025/04',45.3,50.9,54],['2025/05',45.0,51.3,35],['2025/06',44.8,52.1,48],['2025/07',44.6,52.3,45],['2025/08',43.7,52.6,37],['2025/09',43.8,52.9,43],['2025/10',43.4,52.8,51],['2025/11',41.7,54.8,44],['2025/12',42.5,54.1,43],['2026/01',41.9,54.5,54],['2026/02',41.2,55.7,47],['2026/03',41.0,55.3,49],['2026/04',39.4,57.6,52],['2026/05',38.8,57.9,42],['2026/06',39.2,57.6,40],['2026/07',39.8,57.7,2],['2026/08',36.7,60.5,5],['2026/09',36.2,59.7,11],['2026/10',34.4,63.7,13]];
 var W,H,pl=40,pr=100,pt=16,pb=34,ymin=30,ymax=70,FS=12;
 var NS='http://www.w3.org/2000/svg',svg=document.getElementById('apSvg'),tip=document.getElementById('apTip');
 var X=function(i){return pl+(W-pl-pr)*i/(M.length-1)};
@@ -349,7 +349,7 @@ function draw(){
  W=narrow?420:720;H=narrow?300:340;pr=narrow?84:100;FS=narrow?12:12.5;pl=narrow?38:40;
  svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.innerHTML='';
  [30,40,50,60,70].forEach(function(v){el('line',{x1:pl,x2:W-pr,y1:Y(v),y2:Y(v),stroke:v===50?'#9aa3b5':'#e2e6ee','stroke-width':1,'stroke-dasharray':v===50?'4 3':''});el('text',{x:pl-6,y:Y(v)+4,'text-anchor':'end','font-size':FS,fill:'#5b6475'},v+'%')});
- (narrow?[0,12,21]:[0,6,12,18,21]).forEach(function(i){var m=M[i][0];el('text',{x:X(i),y:H-pb+20,'text-anchor':i===0?'start':(i===21?'end':'middle'),'font-size':FS,fill:'#5b6475'},m.slice(0,4)+'年'+parseInt(m.slice(5),10)+'月')});
+ (narrow?[0,12,21]:[0,6,12,21]).forEach(function(i){var m=M[i][0];el('text',{x:X(i),y:H-pb+20,'text-anchor':i===0?'start':(i===21?'end':'middle'),'font-size':FS,fill:'#5b6475'},m.slice(0,4)+'年'+parseInt(m.slice(5),10)+'月')});
  function path(k){return M.map(function(m,i){return(i?'L':'M')+X(i).toFixed(1)+','+Y(m[k]).toFixed(1)}).join('')}
  el('path',{d:path(2),fill:'none',stroke:R,'stroke-width':2.5,'stroke-linejoin':'round'});
  el('path',{d:path(1),fill:'none',stroke:A,'stroke-width':2.5,'stroke-linejoin':'round'});
@@ -563,7 +563,7 @@ render();
   </div>
 </section>
 
-<!-- Part6 FAQ -->
+<!-- Part8 FAQ -->
 <section id="part6">
   <div class="part">PART 6</div>
   <h2>期中選舉Q&amp;A：五個最常被問的問題</h2>
@@ -592,7 +592,7 @@ render();
   <p class="src" style="margin-top:14px">更多規則說明請見<a href="https://news.tvbs.com.tw/world/4032883" target="_blank" rel="noopener">TVBS新聞網期中選舉懶人包</a>與<a href="https://news.tvbs.com.tw/world/4034970" target="_blank" rel="noopener">美國參議院眾議院差在哪</a>。</p>
 </section>
 
-<!-- Part7 延伸閱讀 -->
+<!-- Part9 延伸閱讀 -->
 <section id="part7">
   <div class="part">PART 7</div>
   <h2>延伸閱讀：川普時代的美國政局</h2>
