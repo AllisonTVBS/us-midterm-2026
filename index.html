@@ -87,6 +87,9 @@
 
   /* Media / embed placeholders */
   .slot{background:#fff;border:2px dashed #b8c2d8;border-radius:6px;padding:28px 20px;text-align:center;color:var(--muted);font-size:15px;margin-bottom:20px}
+  .vid-t{margin:0 0 10px;font-size:18px;color:var(--navy);border-left:4px solid var(--red);padding-left:10px;line-height:1.4}
+  .vid{position:relative;aspect-ratio:16/9;background:#000;border-radius:6px;overflow:hidden;margin-bottom:20px}
+  .vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
   .slot b{display:block;color:var(--navy);margin-bottom:4px}
 
   /* Live */
@@ -310,7 +313,66 @@
       <tr><td>參議院</td><td>100席</td><td>51席（50對50時由副總統決定票）</td><td>共和黨53席、民主黨陣營47席（含2席無黨籍）</td><td>4席</td></tr>
     </tbody></table></div>
   <p class="src">副總統同時是參議院議長，雙方票數相同時可投下決定票，現任副總統范斯屬共和黨，因此共和黨最多可失去3席仍維持多數。眾議院為第119屆國會現況，合計435席，空缺席次補選後民主黨所需淨增席次會略有變動。不同來源的席次略有出入，請以美國眾議院與參議院官方網站為準。資料整理自<a href="https://news.tvbs.com.tw/world/4032883" target="_blank" rel="noopener">TVBS新聞網期中選舉懶人包</a>。</p>
-  <div class="slot"><b>【圖表模組】川普支持率走勢</b>數據待補，請標註來源與更新日期</div>
+<div class="ap" id="ap">
+  <div class="ap-head"><b>川普就任以來施政支持率走勢</b><span>全國民調加權平均，按月</span></div>
+  <div class="ap-chartwrap">
+    <svg id="apSvg" viewBox="0 0 720 340" role="img" aria-label="川普第二任期支持率與不支持率按月走勢，支持率由2025年1月的51.0%降至2026年10月的35.0%"></svg>
+    <div class="ap-tip" id="apTip" hidden></div>
+  </div>
+  <p class="ap-src">資料來源：<a href="https://trumpinsight.com/trump-approval-rating" target="_blank" rel="noopener">Trump Insight</a>（採用<a href="https://votehub.com/" target="_blank" rel="noopener">VoteHub</a>全國民調資料，CC BY 4.0），資料更新至2026年10月18日。各月數字為每日加權平均的月均值；空心圓點代表該月納入的民調少於5份，參考性較低（2026年10月僅2份）。不同媒體的平均算法不同，數字會有落差，例如2026年9月12日各平均值的支持率介於34.8%至40.0%。</p>
+</div>
+<style>
+.ap{background:#fff;border:1px solid var(--line);border-radius:8px;padding:18px;margin-bottom:20px}
+.ap-head{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;margin-bottom:8px}
+.ap-head b{font-size:17px;color:var(--navy)}
+.ap-head span{font-size:13px;color:var(--muted)}
+.ap-chartwrap{position:relative}
+#apSvg{width:100%;height:auto;display:block;touch-action:pan-y}
+#apSvg text{font-family:inherit}
+.ap-tip{position:absolute;pointer-events:none;background:var(--navy);color:#fff;font-size:13px;line-height:1.6;padding:6px 10px;border-radius:4px;white-space:nowrap;transform:translate(-50%,-100%);z-index:2}
+.ap-tip b{display:block;margin-bottom:2px}
+.ap-src{font-size:13px;color:var(--muted);margin:10px 0 0}
+.ap-src a{text-decoration:underline}
+</style>
+<script>
+(function(){
+var M=[['2025/01',51.0,41.7,18],['2025/02',49.2,45.9,45],['2025/03',47.6,48.8,51],['2025/04',45.3,50.9,54],['2025/05',45.0,51.3,35],['2025/06',44.8,52.1,48],['2025/07',44.6,52.3,45],['2025/08',43.7,52.6,37],['2025/09',43.8,52.9,43],['2025/10',43.4,52.8,51],['2025/11',41.7,54.8,44],['2025/12',42.5,54.1,43],['2026/01',41.9,54.5,54],['2026/02',41.2,55.7,47],['2026/03',41.0,55.3,49],['2026/04',39.4,57.6,52],['2026/05',38.8,57.9,42],['2026/06',39.2,57.6,40],['2026/07',41.2,56.3,0],['2026/08',40.7,56.2,5],['2026/09',36.9,56.9,0],['2026/10',35.0,62.4,2]];
+var W,H,pl=40,pr=100,pt=16,pb=34,ymin=30,ymax=70,FS=12;
+var NS='http://www.w3.org/2000/svg',svg=document.getElementById('apSvg'),tip=document.getElementById('apTip');
+var X=function(i){return pl+(W-pl-pr)*i/(M.length-1)};
+var Y=function(v){return pt+(H-pt-pb)*(ymax-v)/(ymax-ymin)};
+function el(n,a,t){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);if(t!=null)e.textContent=t;svg.appendChild(e);return e}
+var A='#1a3d8f',R='#c8102e',mode='';
+function draw(){
+ var narrow=svg.parentNode.clientWidth<560;
+ if(mode===(narrow?'n':'w'))return;mode=narrow?'n':'w';
+ W=narrow?420:720;H=narrow?300:340;pr=narrow?84:100;FS=narrow?12:12.5;pl=narrow?38:40;
+ svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.innerHTML='';
+ [30,40,50,60,70].forEach(function(v){el('line',{x1:pl,x2:W-pr,y1:Y(v),y2:Y(v),stroke:v===50?'#9aa3b5':'#e2e6ee','stroke-width':1,'stroke-dasharray':v===50?'4 3':''});el('text',{x:pl-6,y:Y(v)+4,'text-anchor':'end','font-size':FS,fill:'#5b6475'},v+'%')});
+ (narrow?[0,12,21]:[0,6,12,18,21]).forEach(function(i){var m=M[i][0];el('text',{x:X(i),y:H-pb+20,'text-anchor':i===0?'start':(i===21?'end':'middle'),'font-size':FS,fill:'#5b6475'},m.slice(0,4)+'年'+parseInt(m.slice(5),10)+'月')});
+ function path(k){return M.map(function(m,i){return(i?'L':'M')+X(i).toFixed(1)+','+Y(m[k]).toFixed(1)}).join('')}
+ el('path',{d:path(2),fill:'none',stroke:R,'stroke-width':2.5,'stroke-linejoin':'round'});
+ el('path',{d:path(1),fill:'none',stroke:A,'stroke-width':2.5,'stroke-linejoin':'round'});
+ M.forEach(function(m,i){[[1,A],[2,R]].forEach(function(s){el('circle',{cx:X(i),cy:Y(m[s[0]]),r:narrow?3:3.5,fill:m[3]<5?'#fff':s[1],stroke:s[1],'stroke-width':2})})});
+ var last=M.length-1;
+ el('text',{x:X(last)+8,y:Y(M[last][1])+4,'font-size':FS+1,'font-weight':700,fill:A},'支持 '+M[last][1].toFixed(1)+'%');
+ el('text',{x:X(last)+8,y:Y(M[last][2])+4,'font-size':FS+1,'font-weight':700,fill:R},'不支持 '+M[last][2].toFixed(1)+'%');
+ el('text',{x:X(0)+8,y:Y(M[0][1])-10,'font-size':FS,'font-weight':700,fill:A},M[0][1].toFixed(1)+'%');
+ el('text',{x:X(0)+8,y:Y(M[0][2])+20,'font-size':FS,'font-weight':700,fill:R},M[0][2].toFixed(1)+'%');
+ hl=el('line',{y1:pt,y2:H-pb,stroke:'#5b6475','stroke-width':1,visibility:'hidden'});
+ var ov=el('rect',{x:pl,y:pt,width:W-pl-pr+10,height:H-pt-pb,fill:'transparent'});
+ ov.addEventListener('mousemove',move);ov.addEventListener('mouseleave',out);ov.addEventListener('touchstart',move,{passive:true});ov.addEventListener('touchmove',move,{passive:true});ov.addEventListener('touchend',out);
+}
+var hl;
+function move(ev){var r=svg.getBoundingClientRect(),cx=(ev.touches?ev.touches[0].clientX:ev.clientX),px=(cx-r.left)*W/r.width;var i=Math.round((px-pl)/((W-pl-pr)/(M.length-1)));i=Math.max(0,Math.min(M.length-1,i));var m=M[i];
+ hl.setAttribute('x1',X(i));hl.setAttribute('x2',X(i));hl.setAttribute('visibility','visible');
+ var net=(m[1]-m[2]).toFixed(1);
+ tip.innerHTML='<b>'+m[0].slice(0,4)+'年'+parseInt(m[0].slice(5),10)+'月</b><span style="color:#9fb8ff">支持 '+m[1].toFixed(1)+'%</span>　<span style="color:#ff9aa8">不支持 '+m[2].toFixed(1)+'%</span><br>淨支持率 '+(net>0?'+':'')+net+'，民調 '+m[3]+' 份';
+ tip.hidden=false;var tx=X(i)/W*r.width;tx=Math.max(90,Math.min(r.width-90,tx));tip.style.left=tx+'px';tip.style.top=(Y(Math.max(m[1],m[2]))/H*r.height-8)+'px'}
+function out(){hl.setAttribute('visibility','hidden');tip.hidden=true}
+draw();window.addEventListener('resize',draw);
+})();
+</script>
   <div class="cards">
     <a class="card" href="https://news.tvbs.com.tw/world/4035336" target="_blank" rel="noopener"><div class="thumb"><img src="https://news-images.tvbs.com.tw/api/v1/image/01a13997-762f-73f5-8ff4-808348ac62ab.jpg?w=1067&amp;h=600&amp;t=16x9&amp;c=0,0,1200,675&amp;w=800&amp;h=450" alt="" loading="lazy" onerror="this.remove()"></div><div class="body"><h3>美國期中選舉川普期中考！最新民調、歷史規律與國會席次變天解析</h3></div></a>
     <a class="card" href="https://news.tvbs.com.tw/world/4032238" target="_blank" rel="noopener"><div class="thumb"><img src="https://news-images.tvbs.com.tw/api/v1/image/01a10f90-e8bc-715d-85b8-de7efad0c82e.jpg?w=1067&amp;h=600&amp;t=16x9&amp;wp=l,t&amp;c=0,191,3928,2401&amp;w=800&amp;h=450" alt="" loading="lazy" onerror="this.remove()"></div><div class="body"><h3>期中選舉不到1個月！川普支持率續創新低 「1族裔」選票恐不保</h3></div></a>
@@ -329,7 +391,133 @@
   <h2>權力版圖在這裡決定：參眾兩院關鍵戰場全地圖</h2>
   <p class="intro">參議院與眾議院的選戰地圖大不相同，勝負往往取決於少數幾個關鍵州與搖擺選區。參議院方面，喬治亞、密西根、明尼蘇達、愛荷華與北卡羅來納被視為攸關多數黨歸屬的戰場；眾議院方面，多州在選前重劃選區，新地圖直接影響席次歸屬。開票夜該盯哪幾個州，勝負關鍵就在這裡。</p>
   <div class="note"><b>選區重劃是這次的變數。</b>依PolicyMap 9月28日的追蹤整理，11月將使用新地圖的有9個州：德州、加州、北卡羅來納、俄亥俄、猶他、佛羅里達、田納西、路易斯安那與阿拉巴馬。維吉尼亞與密蘇里的新地圖最後都沒能上路，11月仍沿用舊圖。多數新地圖仍有訴訟進行，實際結果要等開票後才知道。</div>
-  <div class="slot"><b>【地圖模組】關鍵戰場互動地圖</b>參議院關鍵州、眾院搖擺選區、州長選舉</div>
+<div class="bm" id="bm">
+  <div class="bm-tabs" role="tablist">
+    <button type="button" class="on" data-t="senate">參議院</button>
+    <button type="button" data-t="gov">州長</button>
+    <button type="button" data-t="house">眾議院</button>
+  </div>
+  <div class="bm-main">
+    <div class="bm-gridwrap"><div class="bm-grid" id="bmGrid"></div></div>
+    <div class="bm-side">
+      <div class="bm-legend" id="bmLegend"></div>
+      <div class="bm-panel" id="bmPanel"></div>
+    </div>
+  </div>
+  <p class="bm-src">資料來源：TVBS新聞網〈2026美國期中選舉搖擺州有哪些？〉（民調平均為FiftyPlusOne，候選人名單更新至10月13日；庫克政治報告10月9日評級）、〈美國期中選舉懶人包〉。地圖為各州等大方塊示意圖（方塊內為州名縮寫），非實際面積。</p>
+</div>
+<style>
+.bm{background:#fff;border:1px solid var(--line);border-radius:8px;padding:18px;margin-bottom:20px}
+.bm-tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.bm-tabs button{font:inherit;font-size:15px;padding:6px 18px;border:1px solid var(--line);background:#fff;border-radius:999px;cursor:pointer;color:var(--ink)}
+.bm-tabs button.on{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:700}
+.bm-main{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:20px;align-items:start}
+.bm-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:4px}
+.bm-grid button{font:inherit;aspect-ratio:1;padding:0;border:0;border-radius:4px;font-size:clamp(10px,1.5vw,13px);font-weight:700;cursor:pointer;background:#eceff5;color:#9aa3b5;line-height:1}
+.bm-grid button.on{background:#d3dcf0;color:var(--navy)}
+.bm-grid button.rt{background:#c8102e;color:#fff}
+.bm-grid button.bl{background:#1a3d8f;color:#fff}
+.bm-grid button.hot{background:#e0a100;color:#fff}
+.bm-grid button.sp{background:#8aa0d0;color:#fff}
+.bm-grid button.sel{outline:3px solid var(--navy);outline-offset:1px}
+.bm-grid button:disabled{cursor:default}
+.bm-legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--muted);margin-bottom:12px}
+.bm-legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.bm-panel{background:var(--bg);border-radius:6px;padding:14px 16px;font-size:15px;min-height:150px}
+.bm-panel h3{margin:0 0 6px;font-size:18px;color:var(--navy)}
+.bm-panel .tag{display:inline-block;font-size:12px;padding:0 8px;border-radius:2px;color:#fff;margin-bottom:8px;margin-right:6px}
+.bm-panel p{margin:0 0 6px;line-height:1.7}
+.bm-panel .hint{color:var(--muted)}
+.bm-sum{display:flex;gap:8px;margin-bottom:10px}
+.bm-sum div{flex:1;text-align:center;border-radius:4px;color:#fff;padding:4px 2px;font-size:13px;line-height:1.4}
+.bm-sum b{display:block;font-size:20px}
+.bm-src{font-size:13px;color:var(--muted);margin:14px 0 0}
+@media(max-width:760px){.bm-main{grid-template-columns:1fr}}
+</style>
+<script>
+(function(){
+var L={AK:[0,0],ME:[11,0],VT:[10,1],NH:[11,1],WA:[0,2],ID:[1,2],MT:[2,2],ND:[3,2],MN:[4,2],IL:[5,2],WI:[6,2],MI:[7,2],NY:[8,2],MA:[9,2],RI:[10,2],
+OR:[0,3],NV:[1,3],WY:[2,3],SD:[3,3],IA:[4,3],IN:[5,3],OH:[6,3],PA:[7,3],NJ:[8,3],CT:[9,3],
+CA:[0,4],UT:[1,4],CO:[2,4],NE:[3,4],MO:[4,4],KY:[5,4],WV:[6,4],VA:[7,4],MD:[8,4],DE:[9,4],
+AZ:[1,5],NM:[2,5],KS:[3,5],AR:[4,5],TN:[5,5],NC:[6,5],SC:[7,5],DC:[8,5],
+OK:[3,6],LA:[4,6],MS:[5,6],AL:[6,6],GA:[7,6],HI:[0,7],TX:[3,7],FL:[7,7]};
+var N={AK:'阿拉斯加',ME:'緬因',VT:'佛蒙特',NH:'新罕布夏',WA:'華盛頓',ID:'愛達荷',MT:'蒙大拿',ND:'北達科他',MN:'明尼蘇達',IL:'伊利諾',WI:'威斯康辛',MI:'密西根',NY:'紐約',MA:'麻薩諸塞',RI:'羅德島',OR:'奧勒岡',NV:'內華達',WY:'懷俄明',SD:'南達科他',IA:'愛荷華',IN:'印第安納',OH:'俄亥俄',PA:'賓夕法尼亞',NJ:'紐澤西',CT:'康乃狄克',CA:'加州',UT:'猶他',CO:'科羅拉多',NE:'內布拉斯加',MO:'密蘇里',KY:'肯塔基',WV:'西維吉尼亞',VA:'維吉尼亞',MD:'馬里蘭',DE:'德拉瓦',AZ:'亞利桑那',NM:'新墨西哥',KS:'堪薩斯',AR:'阿肯色',TN:'田納西',NC:'北卡羅來納',SC:'南卡羅來納',DC:'華盛頓特區',OK:'奧克拉荷馬',LA:'路易斯安那',MS:'密西西比',AL:'阿拉巴馬',GA:'喬治亞',HI:'夏威夷',TX:'德州',FL:'佛羅里達'};
+var SEN='AL AK AR CO DE FL GA ID IL IA KS KY LA ME MA MI MN MS MT NE NH NJ NM NC OK OR RI SC SD TN TX VA WV WY OH'.split(' ');
+var GOV='AL AK AZ AR CA CO CT FL GA HI ID IL IA KS ME MD MA MI MN NE NV NH NM NY OH OK OR PA RI SC SD TN TX VT WI WY'.split(' ');
+var NEWMAP='TX CA NC OH UT FL TN LA AL'.split(' ');
+var D={
+senate:{
+ intro:'民主黨需淨增4席才能取得51席多數。點選有顏色的州查看選情。',
+ legend:[['#c8102e','共和黨席次，民主黨攻勢'],['#1a3d8f','民主黨席次，需守住'],['#8aa0d0','補選'],['#d3dcf0','其他改選州'],['#eceff5','今年不改選']],
+ base:SEN,
+ st:{
+  NC:['rt','共和黨席次（開放）','現任共和黨參議員Thom Tillis宣布退休。民主黨推出前州長Roy Cooper，對手為共和黨Michael Whatley。民調平均Cooper領先約8至9點，民主黨視為必須拿下的席次。'],
+  ME:['rt','共和黨席次','共和黨現任Susan Collins對上民主黨Troy Jackson（前州參議院院長）。民調平均Jackson略領先約2至3點，選情膠著。緬因是2024年總統大選由民主黨勝出、但參議院席次由共和黨掌握的州。'],
+  OH:['sp','補選','原為JD Vance的席次，現由共和黨任命的Jon Husted代理，對上民主黨前參議員Sherrod Brown。近期民調幾乎平手。川普2024年在此大勝，若民主黨翻盤，將被視為全國逆風的指標。'],
+  MI:['bl','民主黨席次（開放）','民主黨現任Gary Peters退休。民主黨推出進步派Abdul El-Sayed，對手為共和黨前眾議員Mike Rogers。民調平均El-Sayed微幅領先約2至3.5點，民主黨必須守住。'],
+  NH:['bl','民主黨席次','民主黨必須守住的席次。'],
+  GA:['bl','民主黨席次','民主黨必須守住的席次。'],
+  MN:['bl','民主黨席次','民主黨必須守住的席次。'],
+  IA:['rt','共和黨席次','民主黨有望翻轉的紅州席次。'],
+  TX:['rt','共和黨席次','民主黨有望翻轉的紅州席次。'],
+  AK:['rt','共和黨席次','民主黨有望翻轉的紅州席次。'],
+  FL:['sp','補選','原為Marco Rubio的席次（現任國務卿），現由共和黨任命的Ashley Moody代理。']
+ }},
+gov:{
+ intro:'全美36州改選州長，庫克政治報告10月評級整體對民主黨有利。',
+ legend:[['#e0a100','最膠著的4州'],['#d3dcf0','其他改選州'],['#eceff5','今年不改選']],
+ base:GOV,
+ st:{
+  GA:['hot','最膠著','庫克政治報告10月評級中最膠著的4州之一。'],
+  NV:['hot','最膠著','庫克政治報告10月評級中最膠著的4州之一。'],
+  OH:['hot','最膠著','庫克政治報告10月評級中最膠著的4州之一。'],
+  WI:['hot','最膠著','庫克政治報告10月評級中最膠著的4州之一。']
+ }},
+house:{
+ intro:'眾議院435席全數改選，民主黨需218席過半。部分州採用新選區地圖，選情另有變數。',
+ legend:[['#e0a100','2026年改用新選區地圖的州'],['#d3dcf0','其他州']],
+ base:Object.keys(L),
+ st:{
+  TX:['hot','新選區地圖','今年改用新選區地圖。'],
+  CA:['hot','新選區地圖','今年改用新選區地圖，且有多個勝負接近的選區。'],
+  NC:['hot','新選區地圖','今年改用新選區地圖。'],
+  OH:['hot','新選區地圖','今年改用新選區地圖。'],
+  UT:['hot','新選區地圖','今年改用新選區地圖。'],
+  FL:['hot','新選區地圖','今年改用新選區地圖，新圖預計讓共和黨最多增加4席。'],
+  TN:['hot','新選區地圖','今年改用新選區地圖。'],
+  LA:['hot','新選區地圖','今年改用新選區地圖。眾議院採開放式初選，若無人過半，將於12月12日決選，席次可能延到12月才定案。'],
+  AL:['hot','新選區地圖','今年改用新選區地圖。']
+ }}
+};
+var cls={rt:'rt',bl:'bl',sp:'sp',hot:'hot'},col={rt:'#c8102e',bl:'#1a3d8f',sp:'#8aa0d0',hot:'#e0a100'};
+var root=document.getElementById('bm'),grid=document.getElementById('bmGrid'),panel=document.getElementById('bmPanel'),leg=document.getElementById('bmLegend');
+var cur='senate',sel=null,btn={};
+Object.keys(L).forEach(function(k){var b=document.createElement('button');b.type='button';b.textContent=k;b.title=N[k];b.style.gridColumn=L[k][0]+1;b.style.gridRow=L[k][1]+1;b.addEventListener('click',function(){pick(k)});grid.appendChild(b);btn[k]=b});
+function summary(){
+ if(cur==='house')return '<div class="bm-sum"><div style="background:#1a3d8f"><b>213</b>傾向民主黨</div><div style="background:#e0a100"><b>21</b>勝負接近</div><div style="background:#c8102e"><b>201</b>傾向共和黨</div></div><p class="hint" style="font-size:13px">庫克政治報告10月9日評級。民主黨在21席勝負接近選區中贏下5席，即可達218席過半。</p>';
+ return '';
+}
+function render(){
+ var d=D[cur];
+ [].forEach.call(root.querySelectorAll('.bm-tabs button'),function(t){t.classList.toggle('on',t.dataset.t===cur)});
+ leg.innerHTML=d.legend.map(function(x){return '<span><i style="background:'+x[0]+'"></i>'+x[1]+'</span>'}).join('');
+ Object.keys(btn).forEach(function(k){var b=btn[k],s=d.st[k];b.className='';b.disabled=false;
+  if(s)b.classList.add(cls[s[0]]);else if(d.base.indexOf(k)>-1)b.classList.add('on');
+  if(!s&&d.base.indexOf(k)<0)b.disabled=true;
+  if(k===sel)b.classList.add('sel')});
+ show();
+}
+function show(){
+ var d=D[cur],s=sel&&d.st[sel];
+ if(!sel||(!s&&D[cur].base.indexOf(sel)<0)){panel.innerHTML=summary()+'<p class="hint">'+d.intro+'</p>';return}
+ if(s){panel.innerHTML=summary()+'<h3>'+N[sel]+'</h3><span class="tag" style="background:'+col[s[0]]+'">'+s[1]+'</span><p>'+s[2]+'</p>'}
+ else{panel.innerHTML=summary()+'<h3>'+N[sel]+'</h3><p class="hint">'+(cur==='house'?'沿用原有選區地圖。':'今年'+(cur==='senate'?'參議院':'州長')+'有改選，本專題未列為關鍵戰場。')+'</p>'}
+}
+function pick(k){sel=k;render()}
+[].forEach.call(root.querySelectorAll('.bm-tabs button'),function(t){t.addEventListener('click',function(){cur=t.dataset.t;sel=null;render()})});
+render();
+})();
+</script>
   <div class="cards">
     <a class="card" href="https://news.tvbs.com.tw/world/4034970" target="_blank" rel="noopener"><div class="thumb"><img src="https://news-images.tvbs.com.tw/api/v1/image/01a12ed3-09db-7103-b340-2508bc316470.jpg?w=800&amp;h=450&amp;t=16x9" alt="" loading="lazy" onerror="this.remove()"></div><div class="body"><h3>美國參議院眾議院差在哪？席次任期、權力分工與2026期中選舉影響一次看懂</h3></div></a>
     <a class="card" href="https://news.tvbs.com.tw/world/4034318" target="_blank" rel="noopener"><div class="thumb"><img src="https://news-images.tvbs.com.tw/api/v1/image/01a1251b-43a7-73b2-85d0-e4ff95afc3b3.jpg?w=1067&amp;h=600&amp;t=16x9&amp;c=0,0,1357,763&amp;w=800&amp;h=450" alt="" loading="lazy" onerror="this.remove()"></div><div class="body"><h3>2026美國期中選舉搖擺州有哪些？參院8大戰場、眾院激戰區與選情解析</h3></div></a>
@@ -361,7 +549,8 @@
   <div class="part">PART 5</div>
   <h2>台灣變數：美國國會改選如何牽動關稅、晶片與台股</h2>
   <p class="intro">美國期中選舉的結果，會影響國會對關稅、晶片與對台政策的態度，也牽動台股與全球市場的情緒。無論共和黨守住多數，或民主黨重掌其中一院，國會與白宮的互動都可能改變。對台灣而言，晶片關稅、對台軍售與台股走勢，都可能隨選舉結果出現變數。</p>
-  <div class="slot"><b>【影音模組】專家觀點／駐美記者連線</b>影片待補</div>
+  <h3 class="vid-t">跨海專訪</h3>
+  <div class="vid"><iframe src="https://www.youtube.com/embed/8xrRKsMw8rs?rel=0" title="川普拚期中選舉！TVBS跨海專訪喬州共和黨台裔副主席" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
   <div class="cards">
     <a class="card" href="https://news.tvbs.com.tw/world/4035338" target="_blank" rel="noopener"><div class="thumb"><img src="https://news-images.tvbs.com.tw/api/v1/image/01a13343-7292-71a0-9f8d-267a3271d86d.jpg?w=1067&amp;h=600&amp;t=16x9&amp;c=0,0,1200,675&amp;w=800&amp;h=450" alt="" loading="lazy" onerror="this.remove()"></div><div class="body"><h3>美國期中選舉對台灣有何影響？晶片關稅、對台軍售與台股走勢解析</h3></div></a>
     <a class="card" href="https://news.tvbs.com.tw/world/4030445" target="_blank" rel="noopener"><div class="thumb"><img src="https://news-images.tvbs.com.tw/api/v1/image/01a0f4d7-258b-7166-a6c7-753f8255839e.jpg?w=1067&amp;h=600&amp;t=16x9&amp;wp=l,b&amp;c=0,0,4156,2338&amp;w=800&amp;h=450" alt="" loading="lazy" onerror="this.remove()"></div><div class="body"><h3>台積電德州建廠成真？川普TIME專訪稱台灣晶片公司投5000億美元</h3></div></a>
@@ -374,7 +563,7 @@
   </div>
 </section>
 
-<!-- Part8 FAQ -->
+<!-- Part6 FAQ -->
 <section id="part6">
   <div class="part">PART 6</div>
   <h2>期中選舉Q&amp;A：五個最常被問的問題</h2>
@@ -403,7 +592,7 @@
   <p class="src" style="margin-top:14px">更多規則說明請見<a href="https://news.tvbs.com.tw/world/4032883" target="_blank" rel="noopener">TVBS新聞網期中選舉懶人包</a>與<a href="https://news.tvbs.com.tw/world/4034970" target="_blank" rel="noopener">美國參議院眾議院差在哪</a>。</p>
 </section>
 
-<!-- Part9 延伸閱讀 -->
+<!-- Part7 延伸閱讀 -->
 <section id="part7">
   <div class="part">PART 7</div>
   <h2>延伸閱讀：川普時代的美國政局</h2>
