@@ -394,8 +394,8 @@ draw();window.addEventListener('resize',draw);
 <div class="bm" id="bm">
   <div class="bm-tabs" role="tablist">
     <button type="button" class="on" data-t="senate">參議院</button>
-    <button type="button" data-t="gov">州長</button>
     <button type="button" data-t="house">眾議院</button>
+    <button type="button" data-t="gov">州長</button>
   </div>
   <div class="bm-main">
     <div class="bm-gridwrap"><div class="bm-grid" id="bmGrid"></div></div>
@@ -511,7 +511,7 @@ function show(){
  var d=D[cur],s=sel&&d.st[sel];
  if(!sel||(!s&&D[cur].base.indexOf(sel)<0)){panel.innerHTML=summary()+'<p class="hint">'+d.intro+'</p>';return}
  if(s){panel.innerHTML=summary()+'<h3>'+N[sel]+'</h3><span class="tag" style="background:'+col[s[0]]+'">'+s[1]+'</span><p>'+s[2]+'</p>'}
- else{panel.innerHTML=summary()+'<h3>'+N[sel]+'</h3><p class="hint">'+(cur==='house'?'沿用原有選區地圖。':'今年'+(cur==='senate'?'參議院':'州長')+'有改選，本專題未列為關鍵戰場。')+'</p>'}
+ else{panel.innerHTML=summary()+'<h3>'+N[sel]+'</h3><p class="hint">'+(cur==='house'?'沿用原有選區地圖。':'今年有'+(cur==='senate'?'參議院':'州長')+'改選。')+'</p>'}
 }
 function pick(k){sel=k;render()}
 [].forEach.call(root.querySelectorAll('.bm-tabs button'),function(t){t.addEventListener('click',function(){cur=t.dataset.t;sel=null;render()})});
@@ -608,9 +608,7 @@ render();
 
 <footer>
   <div class="wrap">
-    <p class="copy">本專題內容版權屬TVBS新聞網所有，未經授權不得轉載。</p>
-    <p>本頁為策展頁初稿，其餘文章連結、圖表與影音待補。</p>
-  </div>
+    <p class="copy">本專題內容版權屬TVBS新聞網所有，未經授權不得轉載。</p>  </div>
 </footer>
 
 <script>
