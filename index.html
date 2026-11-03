@@ -217,7 +217,7 @@
         <small>國會變天、權力洗牌與台灣變數</small>
       </h1>
       <p class="lead">川普重返白宮後的第一場全國大考，11月3日登場。眾議院435席全數改選，參議院35席與多州州長同步改選，結果將左右華府未來兩年的施政節奏。TVBS新聞網整理選前懶人包、關鍵戰場、民調與對台灣的影響，開票夜起同步更新戰況。</p>
-      <div class="countdown-label">距離美國投票日（美東時間11月3日）還有</div>
+      <div class="countdown-label" id="cd-label">距離美國首批投票所關閉、開始開票（台灣時間11月4日上午7點）還有</div>
       <div class="countdown" id="countdown">
         <div><b id="cd-d">--</b><span>天</span></div>
         <div><b id="cd-h">--</b><span>小時</span></div>
@@ -231,11 +231,12 @@
 <nav>
   <div class="wrap">
     <a href="#part1" target="_self">懶人包</a>
-    <a href="#part2" target="_self">川普期中考</a>
-    <a href="#part3" target="_self">關鍵戰場</a>
-    <a href="#part4" target="_self">選民議題</a>
-    <a href="#part5" target="_self">台灣怎麼看</a>
-    <a href="#part6" target="_self">常見問題</a>
+    <a href="#part2" target="_self" class="live">開票夜Live</a>
+    <a href="#part3" target="_self">川普期中考</a>
+    <a href="#part4" target="_self">關鍵戰場</a>
+    <a href="#part5" target="_self">選民議題</a>
+    <a href="#part6" target="_self">台灣怎麼看</a>
+    <a href="#part7" target="_self">常見問題</a>
   </div>
 </nav>
 
@@ -300,9 +301,179 @@
   </a>
 </section>
 
-<!-- Part2 -->
+<!-- Part2 開票夜Live -->
 <section id="part2">
   <div class="part">PART 2</div>
+  <h2>開票夜Live：2026美國期中選舉即時戰況與國會控制權</h2>
+  <p class="intro">美國期中選舉將於台灣時間11月4日起陸續開票，各州投票截止時間不同，部分關鍵選區可能需要較長時間才能確定結果。TVBS新聞網將即時更新各州開票進度、當選名單與國會控制權消息，並搭配影音直播與快訊，選舉日當天請隨時回到這一頁。</p>
+  <div class="note"><b>開票夜不一定有最終結果。</b>郵寄選票的收件與計票、結果接近時的覆核與重新計票，都可能讓勝負拖延；以2022年為例，共和黨直到投票日後8天才湊齊眾議院過半所需的218席。2026年路易斯安那州眾議院選舉採開放式初選，若無人過半，將於12月12日決選，該州席次可能延到12月才定案。媒體宣布勝負只是預測，法律上的結果以各州認證為準。</div>
+  <div class="live-box">
+    <span class="live-badge">開票夜即時更新</span>
+<div class="lv" id="lv">
+<h3 class="lv-h">國會席次戰況</h3>
+<p class="lvsub">眾議院435席全面改選，參議院100席中改選35席。可對照改選前席次，以及開票後各黨累計席次。</p>
+<div class="lvt" role="group" aria-label="切換檢視">
+<button type="button" data-mode="before" aria-pressed="true">改選前席次</button>
+<button type="button" data-mode="live" aria-pressed="false">開票戰況</button>
+</div>
+<div class="lvg">
+<section class="lvc">
+<h4>眾議院</h4>
+<p class="lvneed">435席全數改選，218席過半</p>
+<svg id="lv-house" viewBox="0 0 600 320" role="img" aria-label="眾議院席次圖"></svg>
+<ul class="lvl" id="lv-house-legend"></ul>
+<p class="lvs" id="lv-house-status"></p>
+</section>
+<section class="lvc">
+<h4>參議院</h4>
+<p class="lvneed">100席中改選35席，51席過半；50對50時由副總統范斯投下決定票</p>
+<svg id="lv-senate" viewBox="0 0 600 320" role="img" aria-label="參議院席次圖"></svg>
+<ul class="lvl" id="lv-senate-legend"></ul>
+<p class="lvs" id="lv-senate-status"></p>
+</section>
+</div>
+<p class="lvn" id="lv-note"></p>
+</div>
+<style>
+.lv{--d:#1f5fbf;--r:#d03a33;--i:#7b5cc4;--dl:#9db9e8;--rl:#eca4a0;--u:#cdd3dc;--ink:#1c2430;--mut:#5d6877;--line:#e3e7ee;--card:#f6f8fb}
+.lv *{box-sizing:border-box}
+
+
+
+.lv .lvsub{color:var(--mut);font-size:14px;margin:0 0 12px}
+.lv .lvt{display:flex;gap:8px;margin:0 0 14px}
+.lv .lvt button{font:inherit;font-size:15px;padding:8px 16px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);cursor:pointer}
+.lv .lvt button[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.lv .lvg{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.lv .lvc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 14px 16px}
+.lv .lvc h4{margin:0;font-size:18px}
+.lv .lvneed{font-size:13px;color:var(--mut);margin:2px 0 6px}
+.lv svg{display:block;width:100%;height:auto}
+.lv .lvl{display:flex;flex-wrap:wrap;gap:4px 14px;margin:6px 0 0;padding:0;list-style:none;font-size:14px}
+.lv .lvl i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.lv .lvs{font-size:14px;font-weight:600;margin:8px 0 0}
+.lv .lvn{font-size:12px;color:var(--mut);margin:12px 0 0}
+.lv .lvn a{color:inherit}
+@media(max-width:640px){.lv .lvg{grid-template-columns:1fr}}
+.lv{margin:0 0 14px}
+.lv-h{margin:0 0 6px;font-size:18px;color:var(--navy)}
+.lv .lvc h4{margin:0;font-size:18px}
+.lv .lvn{margin:12px 0 0}
+</style>
+<script>
+(function(){
+// 開票夜只需要更新下面live裡的數字（依美聯社宣布的席次累計），以及updated
+var DATA={
+  updated:"2026年11月3日",
+  house:{total:435,majority:218,before:{D:214,R:218,I:1,V:2},live:{D:0,R:0,I:0}},
+  senate:{total:100,majority:51,notUp:{D:34,R:31},up:{D:13,R:22},live:{D:0,R:0}}
+};
+// 開票後把DEFAULT_MODE改成"live"，打開頁面就直接顯示開票戰況
+var DEFAULT_MODE="before";
+var NS="http://www.w3.org/2000/svg";
+var C={D:"#1f5fbf",R:"#d03a33",I:"#7b5cc4",DL:"#9db9e8",RL:"#eca4a0",U:"#cdd3dc"};
+
+function layout(N,rows,rin,rout,cx,cy){
+  var rs=[],sum=0,i;
+  for(i=0;i<rows;i++){var r=rows===1?rout:rin+(rout-rin)*i/(rows-1);rs.push(r);sum+=r;}
+  var cnt=[],tot=0;
+  for(i=0;i<rows;i++){cnt.push(Math.round(N*rs[i]/sum));tot+=cnt[i];}
+  cnt[rows-1]+=N-tot;
+  var pts=[];
+  for(i=0;i<rows;i++){
+    var s=cnt[i];
+    for(var k=0;k<s;k++){
+      var t=s===1?0.5:k/(s-1),a=Math.PI*(1-t);
+      pts.push({x:cx+rs[i]*Math.cos(a),y:cy-rs[i]*Math.sin(a),t:t,r:rs[i]});
+    }
+  }
+  pts.sort(function(p,q){return p.t-q.t||p.r-q.r;});
+  var d=rows>1?(rout-rin)/(rows-1):20,minArc=1e9;
+  for(i=0;i<rows;i++){if(cnt[i]>1){minArc=Math.min(minArc,Math.PI*rs[i]/(cnt[i]-1));}}
+  return {pts:pts,dot:Math.min(13,0.42*Math.min(d,minArc))};
+}
+function draw(id,cfg,parts,center){
+  var svg=document.getElementById(id);
+  while(svg.firstChild){svg.removeChild(svg.firstChild);}
+  var L=layout(cfg.N,cfg.rows,cfg.rin,cfg.rout,300,300),idx=0;
+  parts.forEach(function(p){
+    for(var j=0;j<p.n&&idx<L.pts.length;j++){
+      var pt=L.pts[idx++],c=document.createElementNS(NS,"circle");
+      c.setAttribute("cx",pt.x.toFixed(1));c.setAttribute("cy",pt.y.toFixed(1));c.setAttribute("r",L.dot.toFixed(1));
+      if(p.hollow){c.setAttribute("fill","#fff");c.setAttribute("stroke",p.color);c.setAttribute("stroke-width","1.5");}
+      else{c.setAttribute("fill",p.color);}
+      svg.appendChild(c);
+    }
+  });
+  var t1=document.createElementNS(NS,"text");
+  t1.setAttribute("x","300");t1.setAttribute("y","262");t1.setAttribute("text-anchor","middle");
+  t1.setAttribute("font-size","44");t1.setAttribute("font-weight","700");t1.setAttribute("fill","#1c2430");
+  t1.textContent=center;svg.appendChild(t1);
+  var t2=document.createElementNS(NS,"text");
+  t2.setAttribute("x","300");t2.setAttribute("y","288");t2.setAttribute("text-anchor","middle");
+  t2.setAttribute("font-size","16");t2.setAttribute("fill","#5d6877");
+  t2.textContent="過半門檻";svg.appendChild(t2);
+}
+function legend(id,parts){
+  var ul=document.getElementById(id);ul.innerHTML="";
+  parts.forEach(function(p){
+    var li=document.createElement("li"),i=document.createElement("i");
+    i.style.background=p.hollow?"#fff":p.color;
+    if(p.hollow){i.style.border="1.5px solid "+p.color;}
+    li.appendChild(i);li.appendChild(document.createTextNode(p.name+p.n));
+    ul.appendChild(li);
+  });
+}
+function need(n,t){return n>=t?"已達"+t+"席":"還差"+(t-n)+"席";}
+function setStatus(id,text){document.getElementById(id).textContent=text;}
+
+function render(mode){
+  var H=DATA.house,S=DATA.senate,parts,sd,sr,total;
+  // 眾議院
+  if(mode==="before"){
+    parts=[{name:"民主黨",n:H.before.D,color:C.D},{name:"空缺",n:H.before.V,color:"#8a94a3",hollow:true},{name:"無黨籍",n:H.before.I,color:C.I},{name:"共和黨",n:H.before.R,color:C.R}];
+    setStatus("lv-house-status","民主黨"+need(H.before.D,H.majority)+"；共和黨"+need(H.before.R,H.majority));
+  }else{
+    var hu=H.total-H.live.D-H.live.R-H.live.I;
+    parts=[{name:"民主黨",n:H.live.D,color:C.D},{name:"無黨籍",n:H.live.I,color:C.I},{name:"尚未宣布",n:hu,color:C.U},{name:"共和黨",n:H.live.R,color:C.R}];
+    setStatus("lv-house-status",(H.live.D+H.live.R+H.live.I===0)?"尚未宣布任何席次":"民主黨累計"+H.live.D+"席，"+need(H.live.D,H.majority)+"；共和黨累計"+H.live.R+"席，"+need(H.live.R,H.majority));
+  }
+  draw("lv-house",{N:H.total,rows:10,rin:110,rout:285},parts,String(H.majority));
+  legend("lv-house-legend",parts);
+  // 參議院
+  if(mode==="before"){
+    sd=S.notUp.D+S.up.D;sr=S.notUp.R+S.up.R;
+    parts=[{name:"民主黨陣營未改選",n:S.notUp.D,color:C.D},{name:"民主黨陣營改選",n:S.up.D,color:C.DL},{name:"共和黨改選",n:S.up.R,color:C.RL},{name:"共和黨未改選",n:S.notUp.R,color:C.R}];
+    setStatus("lv-senate-status","民主黨陣營"+sd+"席，"+need(sd,S.majority)+"；共和黨"+sr+"席，"+need(sr,S.majority));
+  }else{
+    sd=S.notUp.D+S.live.D;sr=S.notUp.R+S.live.R;
+    var su=35-S.live.D-S.live.R;
+    parts=[{name:"民主黨陣營",n:sd,color:C.D},{name:"改選席次尚未宣布",n:su,color:C.U},{name:"共和黨",n:sr,color:C.R}];
+    setStatus("lv-senate-status",(S.live.D+S.live.R===0)?"尚未宣布任何席次，目前民主黨陣營"+sd+"席、共和黨"+sr+"席":"民主黨陣營累計"+sd+"席，"+need(sd,S.majority)+"；共和黨累計"+sr+"席，"+need(sr,S.majority));
+  }
+  draw("lv-senate",{N:S.total,rows:5,rin:140,rout:285},parts,String(S.majority));
+  legend("lv-senate-legend",parts);
+}
+document.getElementById("lv-note").innerHTML="資料：改選前席次依<a href=\"https://pressgallery.house.gov/member-data/party-breakdown\" target=\"_blank\" rel=\"noopener\">眾議院新聞廳</a>與<a href=\"https://ballotpedia.org/United_States_House_of_Representatives_elections,_2026\" target=\"_blank\" rel=\"noopener\">Ballotpedia</a>整理，民主黨陣營含2席與民主黨結盟的無黨籍參議員；開票席次依<a href=\"https://apnews.com\" target=\"_blank\" rel=\"noopener\">美聯社</a>宣布累計，各家媒體宣布時間可能不同。更新時間："+DATA.updated+"。";
+
+var btns=document.querySelectorAll("#lv .lvt button");
+Array.prototype.forEach.call(btns,function(b){
+  b.addEventListener("click",function(){
+    Array.prototype.forEach.call(btns,function(x){x.setAttribute("aria-pressed",x===b?"true":"false");});
+    render(b.getAttribute("data-mode"));
+  });
+});
+render(DEFAULT_MODE);
+})();
+</script>
+    <div class="vid" style="margin:0 0 14px"><iframe src="https://www.youtube.com/embed/2wXzyS-kSNk?rel=0" title="2026美國期中選舉開票直播" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+  </div>
+</section>
+
+
+<!-- Part2 -->
+<section id="part3">
+  <div class="part">PART 3</div>
   <h2>川普期中大考：低支持率與歷史魔咒，共和黨守得住國會嗎？</h2>
   <p class="intro">期中選舉向來被視為對現任總統的信任投票，歷史上執政黨在期中選舉通常會失去國會席次。2026年的特殊之處在於，川普支持率偏低，加上物價、關稅與國際局勢等爭議，共和黨面臨的選情壓力備受關注。</p>
   <div class="tbl-wrap"><table class="tbl">
@@ -386,8 +557,8 @@ draw();window.addEventListener('resize',draw);
 </section>
 
 <!-- Part3 -->
-<section id="part3">
-  <div class="part">PART 3</div>
+<section id="part4">
+  <div class="part">PART 4</div>
   <h2>權力版圖在這裡決定：參眾兩院關鍵戰場全地圖</h2>
   <p class="intro">參議院與眾議院的選戰地圖大不相同，勝負往往取決於少數幾個關鍵州與搖擺選區。參議院方面，喬治亞、密西根、明尼蘇達、愛荷華與北卡羅來納被視為攸關多數黨歸屬的戰場；眾議院方面，多州在選前重劃選區，新地圖直接影響席次歸屬。開票夜該盯哪幾個州，勝負關鍵就在這裡。</p>
   <div class="note"><b>選區重劃是這次的變數。</b>依PolicyMap 9月28日的追蹤整理，11月將使用新地圖的有9個州：德州、加州、北卡羅來納、俄亥俄、猶他、佛羅里達、田納西、路易斯安那與阿拉巴馬。維吉尼亞與密蘇里的新地圖最後都沒能上路，11月仍沿用舊圖。多數新地圖仍有訴訟進行，實際結果要等開票後才知道。</div>
@@ -532,8 +703,8 @@ render();
 </section>
 
 <!-- Part4 -->
-<section id="part4">
-  <div class="part">PART 4</div>
+<section id="part5">
+  <div class="part">PART 5</div>
   <h2>荷包決定選票：物價、關稅、移民與油價四大戰線</h2>
   <p class="intro">選民最終怎麼投，常常取決於荷包與生活感受。2026年的選戰中，物價與關稅政策、移民議題，以及國際局勢帶動的油價波動，都是兩黨攻防的焦點，選民對生活成本的不滿，更成為左右選情的關鍵變數。</p>
   <div class="cards">
@@ -549,8 +720,8 @@ render();
 </section>
 
 <!-- Part5 -->
-<section id="part5">
-  <div class="part">PART 5</div>
+<section id="part6">
+  <div class="part">PART 6</div>
   <h2>台灣變數：美國國會改選如何牽動關稅、晶片與台股</h2>
   <p class="intro">美國期中選舉的結果，會影響國會對關稅、晶片與對台政策的態度，也牽動台股與全球市場的情緒。無論共和黨守住多數，或民主黨重掌其中一院，國會與白宮的互動都可能改變。對台灣而言，晶片關稅、對台軍售與台股走勢，都可能隨選舉結果出現變數。</p>
   <h3 class="vid-t">跨海專訪</h3>
@@ -568,8 +739,8 @@ render();
 </section>
 
 <!-- Part8 FAQ -->
-<section id="part6">
-  <div class="part">PART 6</div>
+<section id="part7">
+  <div class="part">PART 7</div>
   <h2>期中選舉Q&amp;A：五個最常被問的問題</h2>
   <p class="intro">關於美國期中選舉，許多讀者最常問的是選舉日期、改選範圍、與總統大選有何不同、國會要贏幾席才算過半，以及結果對台灣有什麼影響。</p>
   <!-- FAQ答案依TVBS新聞網期中選舉懶人包整理，上線前請編輯台核對 -->
@@ -597,8 +768,8 @@ render();
 </section>
 
 <!-- Part9 延伸閱讀 -->
-<section id="part7">
-  <div class="part">PART 7</div>
+<section id="part8">
+  <div class="part">PART 8</div>
   <h2>延伸閱讀：川普時代的美國政局</h2>
   <p class="intro">想進一步了解川普第二任期的施政脈絡與美國政局，可以接著看以下專題與深度報導。</p>
   <div class="cards">
@@ -617,9 +788,10 @@ render();
 
 <script>
   // 倒數至美東11月3日00:00（DST已於11/1結束，故為UTC-5）
-  var target = new Date('2026-11-03T00:00:00-05:00').getTime();
+  var target = new Date('2026-11-03T18:00:00-05:00').getTime();
   function tick(){
     var diff = Math.max(0, target - Date.now());
+    if(diff===0){document.getElementById('cd-label').textContent='開票進行中，TVBS新聞網即時更新戰況';document.getElementById('countdown').style.display='none';return;}
     var d = Math.floor(diff/86400000);
     var h = Math.floor(diff%86400000/3600000);
     var m = Math.floor(diff%3600000/60000);
