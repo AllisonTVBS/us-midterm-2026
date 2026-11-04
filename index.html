@@ -318,14 +318,14 @@
 </div>
 <div class="lvg">
 <section class="lvc">
-<h4>眾議院</h4>
+<h4>眾議院 <span class="lvb" id="lv-house-badge" hidden></span></h4>
 <p class="lvneed">435席全數改選，218席過半</p>
 <svg id="lv-house" viewBox="0 0 600 320" role="img" aria-label="眾議院席次圖"></svg>
 <ul class="lvl" id="lv-house-legend"></ul>
 <p class="lvs" id="lv-house-status"></p>
 </section>
 <section class="lvc">
-<h4>參議院</h4>
+<h4>參議院 <span class="lvb" id="lv-senate-badge" hidden></span></h4>
 <p class="lvneed">100席中改選35席，51席過半；50對50時由副總統范斯投下決定票</p>
 <svg id="lv-senate" viewBox="0 0 600 320" role="img" aria-label="參議院席次圖"></svg>
 <ul class="lvl" id="lv-senate-legend"></ul>
@@ -355,6 +355,10 @@
 .lv .lvn{font-size:12px;color:var(--mut);margin:12px 0 0}
 .lv .lvn a{color:inherit}
 @media(max-width:640px){.lv .lvg{grid-template-columns:1fr}}
+.lv .lvb{display:inline-block;vertical-align:2px;margin-left:6px;padding:1px 10px;border-radius:999px;font-size:13px;font-weight:700;color:#fff}
+.lv .lvb.d{background:var(--d)}.lv .lvb.r{background:var(--r)}
+.lv .lvc.won-d{border-color:var(--d);box-shadow:inset 0 0 0 1px var(--d)}
+.lv .lvc.won-r{border-color:var(--r);box-shadow:inset 0 0 0 1px var(--r)}
 .lv{margin:0 0 14px}
 .lv-h{margin:0 0 6px;font-size:18px;color:var(--navy)}
 .lv-news{margin:18px 0 10px;font-size:18px;color:var(--navy);border-left:4px solid var(--red);padding-left:10px;line-height:1.4}
@@ -365,8 +369,8 @@
 (function(){
 // 開票夜只需要更新下面live裡的數字（依美聯社宣布的席次累計），以及updated
 var DATA={
-  updated:"2026年11月4日下午4點29分（台灣時間）",
-  house:{total:435,majority:218,before:{D:214,R:218,I:1,V:2},live:{D:225,R:136,I:0}},
+  updated:"2026年11月4日下午5點02分（台灣時間）",
+  house:{total:435,majority:218,before:{D:214,R:218,I:1,V:2},live:{D:227,R:139,I:0}},
   senate:{total:100,majority:51,notUp:{D:34,R:31},up:{D:13,R:22},live:{D:20,R:13}}
 };
 // 開票後把DEFAULT_MODE改成"live"，打開頁面就直接顯示開票戰況
@@ -428,6 +432,13 @@ function legend(id,parts){
 function need(n,t){return n>=t?"已達"+t+"席":"還差"+(t-n)+"席";}
 function setStatus(id,text){document.getElementById(id).textContent=text;}
 
+function mark(svgId,d,r,t,live){
+  var card=document.getElementById(svgId).closest(".lvc"),b=document.getElementById(svgId+"-badge");
+  card.classList.remove("won-d","won-r");b.hidden=true;
+  if(!live){return;}
+  if(d>=t){card.classList.add("won-d");b.className="lvb d";b.textContent="\u2713 民主黨累計已過半";b.hidden=false;}
+  else if(r>=t){card.classList.add("won-r");b.className="lvb r";b.textContent="\u2713 共和黨累計已過半";b.hidden=false;}
+}
 function render(mode){
   var H=DATA.house,S=DATA.senate,parts,sd,sr,total;
   // 眾議院
@@ -439,6 +450,7 @@ function render(mode){
     parts=[{name:"民主黨",n:H.live.D,color:C.D},{name:"無黨籍",n:H.live.I,color:C.I},{name:"尚未宣布",n:hu,color:C.U},{name:"共和黨",n:H.live.R,color:C.R}];
     setStatus("lv-house-status",(H.live.D+H.live.R+H.live.I===0)?"尚未宣布任何席次":"民主黨累計"+H.live.D+"席，"+need(H.live.D,H.majority)+"；共和黨累計"+H.live.R+"席，"+need(H.live.R,H.majority));
   }
+  mark("lv-house",H.live.D,H.live.R,H.majority,mode==="live");
   draw("lv-house",{N:H.total,rows:10,rin:110,rout:285},parts,String(H.majority));
   legend("lv-house-legend",parts);
   // 參議院
@@ -452,6 +464,7 @@ function render(mode){
     parts=[{name:"民主黨陣營",n:sd,color:C.D},{name:"改選席次尚未宣布",n:su,color:C.U},{name:"共和黨",n:sr,color:C.R}];
     setStatus("lv-senate-status",(S.live.D+S.live.R===0)?"尚未宣布任何席次，目前民主黨陣營"+sd+"席、共和黨"+sr+"席":"民主黨陣營累計"+sd+"席，"+need(sd,S.majority)+"；共和黨累計"+sr+"席，"+need(sr,S.majority));
   }
+  mark("lv-senate",S.notUp.D+S.live.D,S.notUp.R+S.live.R,S.majority,mode==="live");
   draw("lv-senate",{N:S.total,rows:5,rin:140,rout:285},parts,String(S.majority));
   legend("lv-senate-legend",parts);
 }
